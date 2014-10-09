@@ -5,6 +5,19 @@ source 'https://rubygems.org'
 gem 'rails', '4.1.5'
 # Use postgresql as the database for Active Record
 gem 'pg'
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem "geocoder"
+gem 'carrierwave'
+gem 'redactor-rails'
+gem 'acts_as_commentable_with_threading'
+gem 'httparty', :require => 'httparty', :group => :development
+gem "socialization"
+gem 'acts-as-messageable'
+gem 'fog'
+gem 'rails_12factor', group: :production
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -24,7 +37,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-gem 'spring',        group: :development
+# gem 'spring',        group: :development
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
