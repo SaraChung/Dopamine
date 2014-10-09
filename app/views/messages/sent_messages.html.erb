@@ -1,0 +1,17 @@
+<%= link_to "Inbox", messages_path %>
+<%= link_to "Sent Messages", sent_messages_messages_path %>
+
+  <%unless @messages.blank?%>
+    <%@messages.each do |message|%>
+
+	<%sender = sender(message)%>
+	<b><%= link_to sender.first_name, user_path(sender) %></b> <br/>
+	<b><%= message.topic %>:</b>&nbsp;<%= message.body %>
+
+	<%= link_to "View Conversation", conversation_message_path(message) %>
+
+    <%end%>
+  <%else%>
+    You have no messages!
+  <%end%>
+</div>

@@ -1,0 +1,12 @@
+<h3>Reply to <b><%= sender(@message).first_name %></b></h3>
+
+<%=form_tag reply_messages_path do%>
+  <%= hidden_field_tag :message_id, @message.id %>
+  <div class="row">
+	  <%= text_area_tag "body", '', :class => "form-control", :placeholder => "Enter Message here" %>
+  </div>
+
+  <div class="row">
+      <button class="btn btn-primary btn-cons pull-right" type="submit">Reply</button>
+  </div>
+<%end%>

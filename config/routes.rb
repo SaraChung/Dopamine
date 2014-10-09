@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  get 'messages/index'
+
+  get 'messages/new'
+
+  get 'messages/conversation'
+
+  get 'messages/reply_message'
+
+  get 'messages/sent_messages'
+
   get 'comments/create'
 
   get 'blogs/show'
