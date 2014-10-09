@@ -1,0 +1,15 @@
+development:
+  facebook:
+    app_id: "291763917691202"
+    app_secret: "a2cf804b1fb8772c6e24c09de56c6940"
+    options:
+      scope: "public_profile,email,user_location"
+      display: "page"
+  
+production:
+  facebook:
+    app_id: "291763917691202"
+    app_secret: "a2cf804b1fb8772c6e24c09de56c6940"
+    options:
+      scope: "public_profile,email,user_location"
+      display: "page"

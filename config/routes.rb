@@ -3,6 +3,12 @@ Rails.application.routes.draw do
   
   root to: 'home#index'
 
+  get '/home/about_us' => 'home#about_us'
+  get '/home/introduction' => 'home#introduction'
+  get '/home/contact_us' => 'home#contact_us'
+  get '/home/how_to_use' => 'home#how_to_use'
+  get '/home/faq' => 'home#faq'
+
   resources :blogs
   resources :blog_posts
   resources :comments

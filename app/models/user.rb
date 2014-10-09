@@ -11,9 +11,33 @@ class User < ActiveRecord::Base
   acts_as_followable
   acts_as_follower
 
-  acts_as_messageable :required => [:topic, :body], :class_name => "message"
+  acts_as_messageable :required => [:topic, :body], :class_name => "Message"
 
   after_create :create_profile_and_blog
+
+  def self.find_for_facebook_oauth(auth)
+    user = User.where(:provider => auth.provider, :uid => auth.uid).first
+    if user
+      return user
+    else
+      registered_user = User.where(:email => auth.info.email).first
+      if registered_user
+  return registered_user
+      else
+  if auth.info.email
+          new_user = User.new(
+            provider:auth.provider,
+            uid:auth.uid,
+            email:auth.info.email,
+            password:Devise.friendly_token[0,20]
+          )
+    #   new_user.skip_confirmation!
+    new_user.save
+    return new_user
+        end
+      end
+    end
+  end  
 
   private
 
