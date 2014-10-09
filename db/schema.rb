@@ -11,10 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141009025934) do
+ActiveRecord::Schema.define(version: 20141009032201) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "profiles", force: true do |t|
+    t.integer  "user_id"
+    t.string   "gender"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "street"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.string   "zip_code"
+    t.integer  "age"
+    t.text     "location"
+    t.integer  "search_distance", default: 1
+    t.integer  "search_age",      default: 1
+    t.string   "profile_picture"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "first_name"

@@ -1,0 +1,51 @@
+<%= form_for @profile, :html => {:multipart => true} do |f| %>
+  <div>
+    <div style="float: left">
+      Search Distance (km): &nbsp;&nbsp;<input name="profile[search_distance]" type="range" min="1" max="100" id="distance_slider" step="1" value="<%= @profile.search_distance %>">
+    </div>
+    <div id="search_distance"><%= @profile.search_distance %></div>
+  </div>
+  <br/>
+  <div>
+    <div style="float: left">
+      Search Age:  &nbsp;&nbsp;<input name="profile[search_age]" type="range" min="1" max="100" id="age_slider" step="1" value="<%= @profile.search_age %>">
+    </div>
+    <div id="search_age"><%= @profile.search_age %></div>
+  </div>
+  <br/>
+  <div>
+    <div style="float: left">
+      Profile Picture: <%= f.file_field :profile_picture  %>
+    </div>
+
+  </div>
+  <br/>
+  <div>
+    Gender: <br/>
+    Male:<%= f.radio_button :gender, "Male", :selected => true %>
+    Female:<%= f.radio_button :gender, "Female" %>
+  </div>
+  <div>
+    City: <%=f.text_field :city%>
+  </div>
+  <div>
+    Country: <%=f.text_field :country%>
+  </div>
+  <div>
+    Age: <%=f.text_field :age%>
+  </div>
+  <div>
+    <%= f.submit "update" %>
+  </div>
+<%end%>
+
+<script type="text/javascript">
+  $("#distance_slider").change(function () {
+    var newValue = $('#distance_slider').val();
+    $("#search_distance").html(newValue);
+  });
+  $("#age_slider").change(function () {
+    var newValue = $('#age_slider').val();
+    $("#search_age").html(newValue);
+  });
+</script>

@@ -1,0 +1,7 @@
+<h1>Profile</h1> <%= link_to "Blog Page", blog_path(@user.blog) %>
+<%if @user == current_user%>
+  <%= link_to "edit profile", edit_profile_path(@profile) %>
+<%end%>
+<%unless @profile.profile_picture.blank?%>
+  <%= image_tag @profile.profile_picture.url%>
+<%end%>
