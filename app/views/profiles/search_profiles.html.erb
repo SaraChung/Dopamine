@@ -11,6 +11,7 @@
     <p>Age: <%= profile.age %></p>
     <%= link_to "Match", add_match_users_path(:match_id => profile.user.id) %>
   <%end%>
+  
 <%else%>
-  there are no profiles to show
+  There are no profiles to show!
 <%end%>

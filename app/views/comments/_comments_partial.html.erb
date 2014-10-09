@@ -6,9 +6,9 @@
     <div class="info-wrapper">
       <div class="username">
 	<span class="dark-text">
-	  <a href="#">
-	    <%unless comment.user.profile_picture.blank?%>
-	      <%= image_tag comment.user.profile_picture.url, :style => "width => 100px;" %>
+	  <a href="<%= profile_path(comment.user.profile) %>">
+	    <%unless comment.user.profile.profile_picture.blank?%>
+	      <%= image_tag comment.user.profile.profile_picture.url, :style => "width => 100px;" %>
 	    <%end%>
 	    <%= comment.user.first_name %>
 	  </a>
