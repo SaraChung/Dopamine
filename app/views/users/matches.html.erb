@@ -1,0 +1,18 @@
+<h1>Your Matches</h1>
+
+<%unless @profiles.blank?%>
+  <%@profiles.each do |profile|%>
+    <hr/>
+    <p>Name: <%= profile.user.first_name %><%= profile.user.last_name %></p>
+    <p>Gender: <%= profile.gender %></p>
+    <p>Country: <%= profile.country %></p>
+    <p>City: <%= profile.city %></p>
+    <p>Age: <%= profile.age %></p>
+
+    <%= link_to "Send Message", new_message_path(:user_id => profile.user.id), :class => "btn" %>
+
+  <%end%>
+
+<%else%>
+  There are no matches to show.
+<%end%>

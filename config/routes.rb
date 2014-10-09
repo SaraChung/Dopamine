@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'users/profile'
+
+  get 'users/matches'
+
+  get 'users/add_match'
+
+  get 'users/destroy'
+
   get 'messages/index'
 
   get 'messages/new'
