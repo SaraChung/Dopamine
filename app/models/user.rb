@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :omniauthable
+         :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook]
   
   has_one :profile
   has_one :blog
@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   acts_as_followable
   acts_as_follower
 
-  acts_as_messageable :required => [:topic, :body], :class_name => "Message"
+  acts_as_messageable :required => [:topic, :body], :class_name => "message"
 
   after_create :create_profile_and_blog
 

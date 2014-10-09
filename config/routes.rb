@@ -1,34 +1,39 @@
 Rails.application.routes.draw do
-  get 'users/profile'
-
-  get 'users/matches'
-
-  get 'users/add_match'
-
-  get 'users/destroy'
-
-  get 'messages/index'
-
-  get 'messages/new'
-
-  get 'messages/conversation'
-
-  get 'messages/reply_message'
-
-  get 'messages/sent_messages'
-
-  get 'comments/create'
-
-  get 'blogs/show'
-
-  get 'profiles/show'
-
-  get 'profiles/edit'
-
-  get 'profiles/update'
-
-  devise_for :users
+  devise_for :users, controllers: {:omniauth_callbacks => "omniauth_callbacks"}
+  
   root to: 'home#index'
+
+  resources :blogs
+  resources :blog_posts
+  resources :comments
+
+  resources :profiles do
+    collection do
+      get :search_profiles
+    end
+  end
+
+  resources :messages do
+    collection do
+      post :send_message
+      post :reply
+      get :sent_messages
+    end
+    member do
+      get :reply_message
+      get :conversation
+    end
+  end
+  
+  resources :users do
+    member do
+      get :profile
+    end
+    collection do
+      get :matches
+      get :add_match
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
