@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>Movr</title>
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
+    <%= link_to "Introduction", "/home/introduction" %>
+    <%= link_to "About us", "/home/about_us" %>
+    <%= link_to "How to use", "/home/how_to_use" %>
+    <%= link_to "FAQ", "/home/faq" %>
+    <%= link_to "Contact us", "/home/contact_us" %>
+    <%= link_to "Login", new_user_session_path %>
+    <%= link_to "Sign Up", user_session_path %>
+    <%= link_to "Logout", destroy_user_session_path, :method => :delete %>
+    
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
+    <%= yield %>
+
+  </body>
+</html>
