@@ -1,0 +1,50 @@
+<h1> Blog Page</h1>
+<%if current_user == @blog.user%>
+  <div>
+    <p onclick="$('#body_text').toggle();$('#post_photo').hide();">TEXT</p>
+    <p  onclick="$('#post_photo').toggle();$('#body_text').hide();">PHOTO</p>
+  </div>
+  <div id="body_text">
+    <%= form_for BlogPost.new do |f| %>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+      <%= f.hidden_field :blog_id, :value => @blog.id %>
+      <%= f.text_area :body, :class => "redactor", :rows => 40, :cols => 120 %>
+      <%= f.submit "Create Blog post" %>
+    <%end%>
+  </div>
+  <div id="post_photo" style="display: none">
+    <%= form_for BlogPost.new, :html => {:multipart => true} do |f| %>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+      <%= f.hidden_field :blog_id, :value => @blog.id %>
+      <%= f.file_field :photo %>
+      <%= f.submit "Create Blog post" %>
+    <%end%>
+  </div>
+<%end%>
+
+<h3>Your Blogposts</h3>
+<div>
+  <%unless @blog_posts.blank?%>
+
+  <%@blog_posts.each do |post|%>
+      <hr/>
+      <%if post.body.blank?%>
+	<%= image_tag(post.photo.url) %>
+      <%else%>
+	<%= raw(post.body) %>
+      <%end%>
+      <%if post.user == current_user%>
+	<span style="float: right">
+	  <%= link_to "Delete this Post", blog_post_path(post), :method => :delete, :confirm => "Are you sure you want to delete this blogpost?" %>
+	</span>
+      <%end%>
+
+<h3>Comments</h3>
+  <div id="comments_div_<%= post.id %>">
+	<%= render :partial => "/comments/comments_partial", :locals => {:object => post} %>
+      </div>
+    <%end%>
+  <%else%>
+    You have no blog posts!
+  <%end%>
+  </div>

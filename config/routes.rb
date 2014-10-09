@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'blogs/show'
+
   get 'profiles/show'
 
   get 'profiles/edit'
