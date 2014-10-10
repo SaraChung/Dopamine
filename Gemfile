@@ -9,6 +9,7 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem "geocoder"
+gem 'mini_magick'
 gem 'carrierwave'
 gem 'redactor-rails'
 gem 'acts_as_commentable_with_threading'
@@ -18,6 +19,7 @@ gem 'acts-as-messageable'
 gem 'fog'
 gem 'rails_12factor', group: :production
 
+gem 'foundation-rails', '~> 5.0.2.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
