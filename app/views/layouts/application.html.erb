@@ -1,27 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-  <title>Dopamine</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
+    <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
 
-<body>
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "vendor/modernizr" %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
   <%if user_signed_in?%>
     <%= link_to "Blog", blog_path(current_user.blog) %>
     <%= link_to "Profile", profile_path(current_user.profile) %>
     <%= link_to "Search Profiles", search_profiles_profiles_path %>
     <%= link_to "Matches", matches_users_path %>
   <a href="<%= messages_path %>">Messages</a>
-		<%= link_to "logout", destroy_user_session_path, :method => :delete %>
+    <%= link_to "logout", destroy_user_session_path, :method => :delete %>
   <%end%>
 
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
 
-<%= yield %>
-
-</body>
+    <%= yield %>
+    <%= javascript_include_tag "application" %>
 </html>
