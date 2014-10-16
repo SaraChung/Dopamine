@@ -37,6 +37,8 @@ GEM
     ancestry (2.1.0)
       activerecord (>= 3.0.0)
     arel (4.0.2)
+    autoprefixer-rails (3.1.1.20141001)
+      execjs
     awesome_nested_set (3.0.1)
       activerecord (>= 4.0.0, < 5)
     bcrypt (3.1.7)
@@ -46,6 +48,7 @@ GEM
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
+    coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -124,6 +127,7 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    method_source (0.8.2)
     mime-types (1.25.1)
     mini_magick (3.8.1)
       subexec (~> 0.2.1)
@@ -156,6 +160,12 @@ GEM
     orm_adapter (0.5.0)
     pg (0.17.1)
     polyglot (0.3.5)
+    pry (0.10.1)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+    pry-rails (0.3.2)
+      pry (>= 0.9.10)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -195,6 +205,7 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    slop (3.6.0)
     socialization (1.1.0)
       activerecord
     sprockets (2.11.0)
@@ -228,11 +239,12 @@ PLATFORMS
 DEPENDENCIES
   acts-as-messageable
   acts_as_commentable_with_threading
+  autoprefixer-rails
   carrierwave
   coffee-rails (~> 4.0.0)
   devise
   fog
-  foundation-rails (~> 5.0.2.0)
+  foundation-rails
   geocoder
   httparty
   jbuilder (~> 2.0)
@@ -241,10 +253,12 @@ DEPENDENCIES
   omniauth
   omniauth-facebook
   pg
+  pry
+  pry-rails
   rails (= 4.0)
   rails_12factor
   redactor-rails
-  sass-rails (~> 4.0.3)
+  sass-rails (>= 3.2)
   sdoc (~> 0.4.0)
   socialization
   turbolinks

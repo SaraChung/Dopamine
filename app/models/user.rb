@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :omniauthable
+  :recoverable, :rememberable, :trackable, :validatable, :omniauthable
   
   has_one :profile
   has_one :blog
@@ -22,28 +22,28 @@ class User < ActiveRecord::Base
     else
       registered_user = User.where(:email => auth.info.email).first
       if registered_user
-  return registered_user
+        return registered_user
       else
-  if auth.info.email
+        if auth.info.email
           new_user = User.new(
             provider:auth.provider,
             uid:auth.uid,
             email:auth.info.email,
             password:Devise.friendly_token[0,20]
-          )
+            )
     #   new_user.skip_confirmation!
     new_user.save
     return new_user
-        end
-      end
-    end
-  end  
-
-  private
-
-  def create_profile_and_blog
-    Blog.create(:user_id => self.id)
-    Profile.create(:user_id => self.id)
   end
+end
+end
+end  
+
+private
+
+def create_profile_and_blog
+  Blog.create(:user_id => self.id)
+  Profile.create(:user_id => self.id)
+end
 
 end
