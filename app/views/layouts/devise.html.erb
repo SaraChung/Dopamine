@@ -13,19 +13,38 @@
   </head>
 
   <body>
-    <%= link_to "Introduction", "/home/introduction" %>
-    <%= link_to "About us", "/home/about_us" %>
-    <%= link_to "How to use", "/home/how_to_use" %>
-    <%= link_to "FAQ", "/home/faq" %>
-    <%= link_to "Contact us", "/home/contact_us" %>
-    <%= link_to "Login", new_user_session_path %>
-    <%= link_to "Sign Up", new_user_registration_path %>
-    <%= link_to "Logout", destroy_user_session_path, :method => :delete %>
+<nav class="top-bar">
+  <ul class="title-area">
+    <li class="name">
+      <h1>Dopamine</h1>
+    </li>
+  </ul>
+  <section class="top-bar-section">
+    <ul class="right">
+      <li class="divider"></li>
+      <li><%= link_to "Introduction", "/home/introduction" %></li>
+      <li class="divider"></li>
+      <li><%= link_to "About us", "/home/about_us" %></li>
+      <li class="divider"></li>
+      <li><%= link_to "How to use", "/home/how_to_use" %></li>
+      <li class="divider"></li>
+      <li><%= link_to "FAQ", "/home/faq" %></li>
+      <li class="divider"></li>
+      <li><%= link_to "Contact us", "/home/contact_us" %></li>
+      <li class="divider"></li>
+      <li><%= link_to "Login", new_user_session_path %></li>
+      <li class="divider"></li>
+      <li><%= link_to "Sign Up", new_user_registration_path %></li>
+      <li class="divider"></li>
+      <li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
+    </ul>
+  </div>
+</nav>
     
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
 
     <%= yield %>
-    <%= javascript_include_tag "application" %>
+    <%#= javascript_include_tag "application" %>
   </body>
 </html>

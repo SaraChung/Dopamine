@@ -1,10 +1,22 @@
-<h1>Profile</h1> 
+<div class="row">
+  <div class="small-12 columns">  
+		<h2>Profile</h2>
+		<hr/>
+		<%if @user == current_user%>
+	  	<h3>Hi <%= @profile.user.first_name %> <%= @profile.user.last_name %>, </h3>
+	  <%unless @profile.profile_picture.blank?%>
+	  <p><%= image_tag @profile.profile_picture.url%></p>
+		<%#= link_to "Blog Page", blog_path(@user.blog) %>
 
-<%= link_to "Blog Page", blog_path(@user.blog) %>
+	    <p>Name: <%= @profile.user.first_name %> <%= @profile.user.last_name %></p>
+	    <p>Age: <%= @profile.age %></p>
+	    <p>Gender: <%= @profile.gender %></p>
+	    <p>City: <%= @profile.city %></p>
 
-<%if @user == current_user%>
-  <%= link_to "edit profile", edit_profile_path(@profile) %>
-<%end%>
-<%unless @profile.profile_picture.blank?%>
-  <%= image_tag @profile.profile_picture.url%>
-<%end%>
+	    <hr/>
+			
+			 <%= link_to "Edit Profile", edit_profile_path(@profile) %>
+		<%end%>
+		<%end%>
+	</div>
+</div>

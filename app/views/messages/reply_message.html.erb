@@ -3,7 +3,7 @@
 <%=form_tag reply_messages_path do%>
   <%= hidden_field_tag :message_id, @message.id %>
   <div class="row">
-	  <%= text_area_tag "body", '', :class => "form-control", :placeholder => "Enter Message here" %>
+	  <%= text_area_tag "body", '', :class => "form-control", :placeholder => "Reply" %>
   </div>
 
   <div class="row">

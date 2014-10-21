@@ -1,9 +1,20 @@
-<h1> Blog Page</h1>
+<!-- Header -->
+<div class="row">
+  <div class="small-12 columns">
+    <h1>Blog<br><small>Gettin my dose of dopamine.</small></h1>
+    <hr />
+  </div>
+</div>
+<!-- End Header -->
 
 <%if current_user == @blog.user%>
-  <div>
+  <div class="row">
+    <div class="small-6 columns">
     <p onclick="$('#body_text').toggle();$('#post_photo').hide();">TEXT</p>
-    <p  onclick="$('#post_photo').toggle();$('#body_text').hide();">PHOTO</p>
+    </div>
+    <div class="small-6 columns">
+    <p onclick="$('#post_photo').toggle();$('#body_text').hide();">PHOTO</p>
+    </div>
   </div>
 
   <div id="body_text">
@@ -25,29 +36,55 @@
   </div>
 <%end%>
 
+<hr/>
+
+<!-- Main Blog Content -->
 <h3>Your Blogposts</h3>
+
 <div>
   <%unless @blog_posts.blank?%>
 
+<div class="small-12 columns">
+  <article>
+  <h3>Blog Post Title</h3>
   <%@blog_posts.each do |post|%>
+    
+    <%if post.body.blank?%>
+       <%= image_tag(post.photo.url) %>
+    <%else%>
+       <%= raw(post.body) %>
+    <%end%>
+
+    <%if post.user == current_user%>
+    <br>
+    <div class="row">
+      <%= link_to "Delete this Post", blog_post_path(post), :method => :delete, :confirm => "Are you sure you want to delete this blogpost?" %>
+    </div>
       <hr/>
-      <%if post.body.blank?%>
-	       <%= image_tag(post.photo.url) %>
-      <%else%>
-	       <%= raw(post.body) %>
-      <%end%>
-      <%if post.user == current_user%>
+    <%end%>
+<!-- End Main Content -->
 
-	       <%= link_to "Delete this Post", blog_post_path(post), :method => :delete, :confirm => "Are you sure you want to delete this blogpost?" %>
-
-      <%end%>
-
-<h3>Comments</h3>
+<h4>Comments</h4>
   <div id="comments_div_<%= post.id %>">
-	<%= render :partial => "/comments/comments_partial", :locals => {:object => post} %>
+  <%= render :partial => "/comments/comments_partial", :locals => {:object => post} %>
       </div>
     <%end%>
+
   <%else%>
     You have no blog posts!
   <%end%>
   </div>
+  </article>
+</div>
+
+<!-- Footer -->
+<footer class="row">
+  <div class="small-12 columns">
+    <hr />
+    <div class="row">
+      <div class="small-6 columns">
+        <p>&copy; Copyright no one at all. Go to town.</p>
+      </div>
+    </div>
+  </div>
+</footer> 

@@ -13,12 +13,26 @@
 
   <body>
   <%if user_signed_in?%>
-    <%= link_to "Blog", blog_path(current_user.blog) %>
-    <%= link_to "Profile", profile_path(current_user.profile) %>
-    <%= link_to "Search Profiles", search_profiles_profiles_path %>
-    <%= link_to "Matches", matches_users_path %>
-  <a href="<%= messages_path %>">Messages</a>
-    <%= link_to "logout", destroy_user_session_path, :method => :delete %>
+
+  <nav class="top-bar">
+    <section class="top-bar-section">
+      <ul class="right">
+        <li class="divider"></li>
+        <li><%= link_to "Blog", blog_path(current_user.blog) %></li>
+        <li class="divider"></li>
+        <li><%= link_to "Profile", profile_path(current_user.profile) %></li>
+        <li class="divider"></li>
+        <li><%= link_to "Search Profiles", search_profiles_profiles_path %></li>
+        <li class="divider"></li>
+        <li><%= link_to "Matches", matches_users_path %></li>
+        <li class="divider"></li>
+        <li><a href="<%= messages_path %>">Messages</a></li>
+        <li class="divider"></li>
+        <li><%= link_to "Log Out", destroy_user_session_path, :method => :delete %></li>
+      </ul>
+    </div>
+  </nav>
+
   <%end%>
 
     <p class="notice"><%= notice %></p>

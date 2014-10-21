@@ -1,17 +1,29 @@
-<h1>Search Results</h1>
-<p><b>Note:</b>You can change search filters by adjusting search distance and search age by editing your profile</p>
+<div class="row">
+  <div class="small-12 columns">
+    <h1>Search Results</h1>
 
-<%unless @profiles.blank?%>
-  <%@profiles.each do |profile|%>
-    <hr/>
-    <p>Name: <%= profile.user.first_name %><%= profile.user.last_name %></p>
-    <p>Gender: <%= profile.gender %></p>
-    <p>Country: <%= profile.country %></p>
-    <p>City: <%= profile.city %></p>
-    <p>Age: <%= profile.age %></p>
-    <%= link_to "Match", add_match_users_path(:match_id => profile.user.id) %>
-  <%end%>
-  
-<%else%>
-  There are no profiles to show!
-<%end%>
+    <%unless @profiles.blank?%>
+      <%@profiles.each do |profile|%>
+        <hr/>
+        <p><%= image_tag @profile.profile_picture.url%></p>
+        <p>Name: <%= profile.user.first_name %> <%= profile.user.last_name %></p>
+        <p>Gender: <%= profile.gender %></p>
+        <p>City: <%= profile.city %></p>
+        
+        <button class="small round">
+        <%= link_to "Match", add_match_users_path(:match_id => profile.user.id) %>
+        </div>
+      <%end%>
+
+    <%else%>
+      There are no profiles matching your requirements!
+    <%end%>
+
+    <footer class="row">
+      <div class="small-12 columns">
+        <hr/>
+          <p><b>Note: </b>You can filter search results according to location and age when you edit your profile.</p>
+      </div>
+    </footer> 
+  </div>
+</div>

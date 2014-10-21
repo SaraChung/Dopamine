@@ -1,10 +1,29 @@
-<h1>Profile</h1> 
+<div class="row">
+  <div class="small-12 columns"> 
+		<h1>Profile</h1> 
 
-<%= link_to "Blog Page", blog_path(@user.blog) %>
+		<%= link_to "Blog Page", blog_path(@user.blog) %>
+		<br/>
 
-<%if @user == current_user%>
-  <%= link_to "edit profile", edit_profile_path(@profile) %>
-<%end%>
-<%unless @profile.profile_picture.blank?%>
-  <%= image_tag @profile.profile_picture.url%>
+		<%unless @profiles.blank?%>
+ 	 <%@profiles.each do |profile|%>
+    <hr/>
+    <p><%= image_tag @profile.profile_picture.url%></p>
+    <p>Name: <%= profile.user.first_name %> <%= profile.user.last_name %></p>
+    <p>Gender: <%= profile.gender %></p>
+    <p>City: <%= profile.city %></p>
+    
+    <%= link_to "Match", add_match_users_path(:match_id => profile.user.id) %>
+    <hr/>
+  <%end%>
+  <%end%>
+		
+		<%if @user == current_user%>
+		  <%= link_to "edit profile", edit_profile_path(@profile) %>
+		<%end%>
+
+		<%unless @profile.profile_picture.blank?%>
+		  <%= image_tag @profile.profile_picture.url%>
+	</div>
+</div>
 <%end%>

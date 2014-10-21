@@ -1,2 +1,50 @@
 @import "foundation_and_overrides";
 /* Add imports of custom sass/scss files here */
+
+// sign up button for devise - registrations - new
+
+// .wrapper {
+//   overflow: hidden;
+//   display: inline-block;
+//   border: 2px solid #008cba;
+//   border-radius: 99px;
+//   text-align: center;
+//   width: 100%;
+//   background: #fff;
+//   margin-top: 20px;
+
+//   &:hover {
+//     border: none;
+//     background-color: #008cba;
+//     transition: background-color 0.3s ease;
+    
+//     .inside { 
+//       display: block;
+//       font-size: 16px; 
+//       padding: 18px;
+//       // float: center;
+
+//       &:hover {
+//         transition: background-color 0.3s ease;
+//         background-color: rgba(0, 0, 0, 0.1);
+//       }
+//     }
+
+//     label { display: none; }
+//   }
+//   .inside {
+//     display: none;
+//     color: #fff;
+//     width: 100%;
+//     z-index: 9999;
+//   }
+
+//   label {
+//     padding: 10px;
+//     color: #008cba;
+//     font-size: 16px;
+//     font-weight: bold;
+//   }
+// }    
+
+// end of sign up button         

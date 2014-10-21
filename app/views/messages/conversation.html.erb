@@ -1,20 +1,27 @@
-<%=form_tag reply_messages_path do%>
-  <%= hidden_field_tag :message_id, @messages.last.id %>
-	  <%= text_area_tag "body", '', :class => "form-control", :placeholder => "Enter Message here" %>
+<div class="row">
+  <div class="small-12 columns"> 
+  <%unless @messages.blank?%>
+    <%@messages.each do |message|%>
+        <%sender = sender(message)%>
+        <b><%= link_to sender.first_name, user_path(sender) %></b> 
+        <br/>
+        <b><%= message.topic %>:</b>
+        <br/>
+        <%= message.body %>
+    <%end%>
+  <br/>
+  <br/>
+  <%=form_tag reply_messages_path do%>
+    <%= hidden_field_tag :message_id, @messages.last.id %>
+      <%= text_area_tag "body", '', :class => "form-control", :placeholder => "Reply" %>
 
-
-  <div class="row">
-    <button class="btn btn-primary btn-cons pull-right" type="submit">Reply</button>
+    <div class="">
+      <button class="round button" type="submit">Send</button>
+    </div>
   </div>
-<%end%>
-
-<%unless @messages.blank?%>
-  <%@messages.each do |message|%>
-      <%sender = sender(message)%>
-      <b><%= link_to sender.first_name, user_path(sender) %></b> <br/>
-      <b><%= message.topic %>:</b>&nbsp;<%= message.body %>
+</div>
   <%end%>
 
-<%else%>
-  You have no messages!
+  <%else%>
+    You have no messages!
 <%end%>

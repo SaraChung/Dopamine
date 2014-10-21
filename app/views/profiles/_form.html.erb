@@ -1,43 +1,62 @@
-<%= form_for @profile, :html => {:multipart => true} do |f| %>
-  <div>
-    <div style="float: left">
-      Search Distance (km): &nbsp;&nbsp;<input name="profile[search_distance]" type="range" min="1" max="100" id="distance_slider" step="1" value="<%= @profile.search_distance %>">
-    </div>
-    <div id="search_distance"><%= @profile.search_distance %></div>
-  </div>
-  <br/>
-  <div>
-    <div style="float: left">
-      Search Age:  &nbsp;&nbsp;<input name="profile[search_age]" type="range" min="1" max="100" id="age_slider" step="1" value="<%= @profile.search_age %>">
-    </div>
-    <div id="search_age"><%= @profile.search_age %></div>
-  </div>
-  <br/>
-  <div>
-    <div style="float: left">
-      Profile Picture: <%= f.file_field :profile_picture  %>
+<div class="row">
+  <div class="small-12 columns">  
+
+  <h3>Hi <%= @profile.user.first_name %> <%= @profile.user.last_name %>, </h3> 
+  <p><%= image_tag @profile.profile_picture.url%></p>
+
+  <%= form_for @profile, :html => {:multipart => true} do |f| %>
+    
+    <div class="">
+      <label>Gender:</label>
+        <%= f.radio_button :gender, id="Male", :selected => true %><label>Male</label>
+        <%= f.radio_button :gender, id="Female" %><label>Female</label>
     </div>
 
+    <div class="">
+      <label>Profile Picture:</label> 
+      <%= f.file_field :profile_picture  %>
+    </div>
+
+    <div class="small-12 columns">
+      <label>Search Distance (km):</label>
+      <input name="profile[search_distance]" type="range" min="1" max="100" id="distance_slider" step="1" value="<%= @profile.search_distance %>">
+    <div id="search_distance"><%= @profile.search_distance %>
+    </div>
+    </div>
+
+    <br/>
+
+    <div class="small-12 columns">
+      <label>Search Age (years):</label> 
+      <input name="profile[search_age]" type="range" min="1" max="100" id="age_slider" step="1" value="<%= @profile.search_age %>">
+    <div id="search_age"><%= @profile.search_age %>
+    </div>
+    </div>
+
+    <br/>
+
+    <div class="row">
+      <div class="small-12 columns">
+        <label>City:</label>
+        <%=f.text_field :city%>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="small-12 columns">
+        <label>Age:</label>
+        <%=f.text_field :age%>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="large-12 columns">
+        <%= f.submit "Update Profile" %>
+      </div>
+    </div>
+    <%end%>
   </div>
-  <br/>
-  <div>
-    Gender: <br/>
-    Male:<%= f.radio_button :gender, "Male", :selected => true %>
-    Female:<%= f.radio_button :gender, "Female" %>
-  </div>
-  <div>
-    City: <%=f.text_field :city%>
-  </div>
-  <div>
-    Country: <%=f.text_field :country%>
-  </div>
-  <div>
-    Age: <%=f.text_field :age%>
-  </div>
-  <div>
-    <%= f.submit "update" %>
-  </div>
-<%end%>
+</div>
 
 <script type="text/javascript">
   $("#distance_slider").change(function () {

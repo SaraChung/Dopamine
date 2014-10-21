@@ -1,19 +1,23 @@
-<p>Home</p>
-  <li><a href="#" class="active">New Message</a> </li>
+<div class="row">
+  <div class="small-12 columns">
 
-<h3>New Message to <b><%= @user.first_name %></b></h3>
+  <h3>New Message to <br/>
+  <b><%= @user.first_name %></b></h3>
+  <%= image_tag @user.profile.profile_picture.url %>
+  <br/>
+    <%=form_tag send_message_messages_path do%>
+      <%= hidden_field_tag :user_id, @user.id %>
+    <div class="">
+  	  <%= text_field_tag "subject", '', :class => "form-control", :placeholder => "Subject" %>
+    </div>
 
-<%=form_tag send_message_messages_path do%>
-  <%= hidden_field_tag :user_id, @user.id %>
-  <div class="row">
-	  <%= text_field_tag "subject", '', :class => "form-control", :placeholder => "Subject" %>
+    <div class="">
+  	  <%= text_area_tag "body", '', :class => "form-control", :placeholder => "Enter Message Here" %>
+    </div>
+
+    <div class="">
+      <button class="round button" type="submit">Send</button>
+    </div>
+    <%end%>
   </div>
-
-  <div class="row">
-	  <%= text_area_tag "body", '', :class => "form-control", :placeholder => "Enter Message here" %>
-  </div>
-
-  <div class="row">
-      <button class="btn btn-primary btn-cons pull-right" type="submit">Send</button>
-  </div>
-<%end%>
+</div>

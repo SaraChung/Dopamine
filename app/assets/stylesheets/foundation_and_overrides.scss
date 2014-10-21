@@ -35,7 +35,7 @@
 // $total-columns: 12;
 
 // We use these to control various global styles
-// $body-bg: #fff;
+$body-bg: #fff;
 // $body-font-color: #222;
 // $body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 // $body-font-weight: normal;
@@ -345,7 +345,7 @@
 // We use these to style the fieldset border and spacing.
 // $fieldset-border-style: solid;
 // $fieldset-border-width: 1px;
-// $fieldset-border-color: #ddd;
+$fieldset-border-color: #1E46C9;
 // $fieldset-padding: rem-calc(20);
 // $fieldset-margin: rem-calc(18 0);
 
@@ -927,8 +927,8 @@
 // $include-html-top-bar-classes: $include-html-classes;
 
 // Background color for the top bar
-// $topbar-bg-color: #333;
-// $topbar-bg: $topbar-bg-color;
+$topbar-bg-color: #0cf;
+$topbar-bg: $topbar-bg-color;
 
 // Height and margin
 // $topbar-height: 45px;
@@ -937,6 +937,7 @@
 // Control Input height for top bar
 
 // Controlling the styles for the title in the top bar
+$topbar-title-color: #fff;
 // $topbar-title-weight: normal;
 // $topbar-title-font-size: rem-calc(17);
 
