@@ -4,40 +4,22 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Dopamine" %></title>
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
     <%= csrf_meta_tags %>
+    <%= javascript_include_tag "application" %>
+    <script src='https://cdn.firebase.com/js/client/1.1.1/firebase.js'></script>
   </head>
 
   <body>
-  <%if user_signed_in?%>
-
-  <nav class="top-bar">
-    <section class="top-bar-section">
-      <ul class="right">
-        <li class="divider"></li>
-        <li><%= link_to "Blog", blog_path(current_user.blog) %></li>
-        <li class="divider"></li>
-        <li><%= link_to "Profile", profile_path(current_user.profile) %></li>
-        <li class="divider"></li>
-        <li><%= link_to "Search Profiles", search_profiles_profiles_path %></li>
-        <li class="divider"></li>
-        <li><%= link_to "Matches", matches_users_path %></li>
-        <li class="divider"></li>
-        <li><a href="<%= messages_path %>">Messages</a></li>
-        <li class="divider"></li>
-        <li><%= link_to "Log Out", destroy_user_session_path, :method => :delete %></li>
-      </ul>
-    </div>
-  </nav>
-
-  <%end%>
-
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-
-    <%= yield %>
-    <%= javascript_include_tag "application" %>
+    <header>
+      <%= render 'layouts/navigation' %>
+    </header>
+    <main role="main">
+      <%= render 'layouts/messages' %>
+      <%= yield %>
+    </main>
+  </body>
 </html>

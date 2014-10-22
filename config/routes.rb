@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get '/home/contact_us' => 'home#contact_us'
   get '/home/how_to_use' => 'home#how_to_use'
   get '/home/faq' => 'home#faq'
+  post '/' => 'home#index'
 
   resources :blogs
   resources :blog_posts
@@ -23,6 +24,7 @@ Rails.application.routes.draw do
     collection do
       post :send_message
       post :reply
+      get :reply
       get :sent_messages
     end
     member do

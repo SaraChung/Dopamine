@@ -2,7 +2,9 @@ class MessagesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @messages = current_user.received_messages.conversations
+    @received_messages = current_user.received_messages.conversations
+    @sent_messages = current_user.sent_messages.conversations
+    @messages = @received_messages | @sent_messages
   end
 
   def new
@@ -21,16 +23,32 @@ class MessagesController < ApplicationController
   end
 
   def reply
+    @host = request.host
     @message = Message.find(params[:message_id])
+
     @user = User.find(@message.sent_messageable_id)
-    @reply_message = current_user.reply_to(@message, "Re: #{@message.topic}", params[:body])
-    flash[:notice]= "Message Sent!"
-    redirect_to conversation_message_path(@reply_message)
+    @reply_message = current_user.reply_to(@message, params[:body])
+    @conversation = @reply_message.conversation
+    firebase = Firebase::Client.new("https://popping-torch-6315.firebaseio.com/#{host}/messages_conversation/new_message_#{@conversation.last.id}")
+    firebase.push("", {:name => "#{current_user.first_name}", :text => "#{params[:body]}", :id => "#{current_user.id}")}
+    respond_to do |format|
+      format.html do
+        flash[:notice]= "Message Sent!"
+        redirect_to conversation_message_path(@reply_message)
+      end
+      format.js do
+        render :js => ""
+      end
+    end
   end
 
   def conversation
+    @host = request.host
     @message = Message.find(params[:id])
+    @conversation = @message.conversation
     @messages = @message.conversation
+    firebase = Firebase::Client.new("https://popping-torch-6315.firebaseio.com/#{host}/messages_conversation/new_message_#{@conversation.last.id}")
+    firebase.delete("")
   end
 
   def sent_messages

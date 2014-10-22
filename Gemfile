@@ -28,6 +28,7 @@ gem 'autoprefixer-rails'
 
 gem 'foundation-rails' 
 # '~> 5.0.2.0'
+gem 'firebase'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'

@@ -1,27 +1,48 @@
-<div class="row">
-  <div class="small-12 columns"> 
-  <%unless @messages.blank?%>
-    <%@messages.each do |message|%>
-        <%sender = sender(message)%>
-        <b><%= link_to sender.first_name, user_path(sender) %></b> 
-        <br/>
-        <b><%= message.topic %>:</b>
-        <br/>
-        <%= message.body %>
-    <%end%>
-  <br/>
-  <br/>
-  <%=form_tag reply_messages_path do%>
-    <%= hidden_field_tag :message_id, @messages.last.id %>
-      <%= text_area_tag "body", '', :class => "form-control", :placeholder => "Reply" %>
+<div style="padding: 10px">
+  <h3>Conversation between
+    <a href="<%= profile_path(@conversation.last.people.first.profile) %>">
+      <%=@conversation.first.people.first.first_name%>
+    </a>
+    and
+    <a href="<%= profile_path(@conversation.last.people.last.profile) %>">
+      <%=@conversation.first.people.last.first_name%>
+    </a>
+  </h3>
 
-    <div class="">
-      <button class="round button" type="submit">Send</button>
+  <%=form_tag reply_messages_path, :method => :get, :remote => true do%>
+    <%= hidden_field_tag :message_id, @messages.last.id %>
+    <div>
+      <%= text_area_tag "body", '', :class => "form-control", :placeholder => "Enter Message here" %>
     </div>
-  </div>
-</div>
+    <div class="small round button" type="submit">Reply</button>
+    </div>
   <%end%>
 
-  <%else%>
-    You have no messages!
-<%end%>
+  <div id="messagesDiv">
+    <%unless @messages.blank?%>
+      <%@messages.each do |message|%><br/>
+        <%sender = sender(message)%>
+        <b><%=sender.first_name %></b>:
+        <%= message.body %>
+      <%end%>
+    <%else%>
+      You have no messages
+    <%end%>
+  </div>
+
+</div>
+
+<script type="text/javascript">
+  var fb = new Firebase("https://flickering-torch-1417.firebaseio.com/<%= @host %>/messages_conversation/new_message_<%= @conversation.last.id %>");
+  
+  //SAVE DATA
+<%#*fb.set({ name: "Alex Wolfe" });%>
+  //LISTEN FOR REALTIME CHANGES
+  fb.on("child_added", function(data) {
+    var name = data.val() ? data.val().name : "";
+    var text = data.val() ? data.val().text : "";
+    $('.form-control').val('');
+    $('#messagesDiv').prepend( "<br/>" +"<b>" + name + "</b>" + ": " + text  );
+  
+  });
+</script>

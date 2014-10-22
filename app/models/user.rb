@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   acts_as_followable
   acts_as_follower
 
-  acts_as_messageable :required => [:topic, :body], :class_name => "Message"
+  acts_as_messageable :required => [:body], :class_name => "Message"
 
   after_create :create_profile_and_blog
 
@@ -34,9 +34,9 @@ class User < ActiveRecord::Base
     #   new_user.skip_confirmation!
     new_user.save
     return new_user
+      end
+    end
   end
-end
-end
 end  
 
 private

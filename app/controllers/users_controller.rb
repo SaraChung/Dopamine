@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     match = User.find(params[:match_id])
     current_user.follow!(match)
     match.follow!(current_user)
-    flash[:notice] = "A new match has been added to your matches"
+    flash[:notice] = "A new match has been added to your matches."
     redirect_to matches_users_path
   end
 
