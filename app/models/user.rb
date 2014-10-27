@@ -7,7 +7,8 @@ class User < ActiveRecord::Base
   has_one :profile
   has_one :blog
   has_many :blog_posts
-  
+
+  validates :first_name, :last_name, presence: true
   acts_as_followable
   acts_as_follower
 

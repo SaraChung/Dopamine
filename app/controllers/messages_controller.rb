@@ -30,7 +30,7 @@ class MessagesController < ApplicationController
     @reply_message = current_user.reply_to(@message, params[:body])
     @conversation = @reply_message.conversation
     firebase = Firebase::Client.new("https://popping-torch-6315.firebaseio.com/#{host}/messages_conversation/new_message_#{@conversation.last.id}")
-    firebase.push("", {:name => "#{current_user.first_name}", :text => "#{params[:body]}", :id => "#{current_user.id}")}
+    firebase.push("", :name => current_user.first_name, :text => params[:body], :id => current_user.id)
     respond_to do |format|
       format.html do
         flash[:notice]= "Message Sent!"
