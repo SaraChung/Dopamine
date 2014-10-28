@@ -1,6 +1,6 @@
 class Blog < ActiveRecord::Base
 	
-	has_one :blog_post
+	has_many :blog_posts
   belongs_to :user
   
 end

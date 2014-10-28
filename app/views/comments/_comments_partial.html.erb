@@ -1,23 +1,27 @@
 <% object.root_comments.each do |comment| %>
-	  <a href="<%= profile_path(comment.user.profile) %>">
-	    <%unless comment.user.profile.profile_picture.blank?%>
-	      <%= image_tag comment.user.profile.profile_picture.url, :style => "width => 100px;" %>
-	    <%end%>
-	    <%= comment.user.first_name %>
-	  </a>
+    <div class="panel callout radius">
+        <span>
+          <a href="<%= profile_path(comment.user.profile) %>">
+            <% unless comment.user.profile.profile_picture.blank? %>
+                <%= image_tag comment.user.profile.profile_picture.url, :style => "width => 100px;" %>
+            <% end %>
+            <%= comment.user.first_name %>
+          </a>
+          ,&nbsp;<a href="#" class="muted"><%= time_ago_in_words(comment.created_at) %> ago</a>
+        </span>
 
-	<%= comment.body %>
-
-	  <li><a href="#" class="muted"><%=time_ago_in_words(comment.created_at) %> ago</a></li>
-
-<%end%>
+      <div>
+        <%= comment.body %>
+      </div>
+    </div>
+<% end %>
 
 <%= form_for Comment.new, :remote => true do |f| %>
-  <%= hidden_field_tag "object_id", object.id  %>
-  <%= hidden_field_tag "class_name", object.class %>
+    <%= hidden_field_tag "object_id", object.id %>
+    <%= hidden_field_tag "class_name", object.class %>
 
-	<%= f.text_field :body, :placeholder => "Enter Comment", :style => "width:500px" %>
+    <%= f.text_field :body, :placeholder => "Enter Comment", :style => "width:500px" %>
 
-	<%= f.submit "enter" %>
+    <%= f.submit "enter", class: 'button tiny' %>
 
-<%end%>
+<% end %>

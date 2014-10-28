@@ -3,6 +3,8 @@ class BlogPostsController < ApplicationController
 
   def create
     @blog_post = BlogPost.new(post_params)
+    @blog_post.user = current_user
+    @blog_post.blog = current_user.blog
     if @blog_post.save
       redirect_to blog_path(current_user.blog)
     else

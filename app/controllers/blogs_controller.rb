@@ -3,7 +3,7 @@ class BlogsController < ApplicationController
 
   def show
     @blog = Blog.find(params[:id])
-    @blog_posts = BlogPost.where(:blog_id => @blog.id).order('created_at desc')
+    @blog_posts = @blog.blog_posts.order('created_at desc')
   end
   
 end
