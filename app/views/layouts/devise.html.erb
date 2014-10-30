@@ -25,15 +25,15 @@
     <div class="top-bar-section">
       <ul class="right">
         <li class="divider"></li>
-        <li><%= link_to "Introduction", "/home/introduction" %></li>
+        <li><%= link_to "Introduction", "#{root_path}#introduction" %></li>
         <li class="divider"></li>
-        <li><%= link_to "About us", "/home/about_us" %></li>
+        <li><%= link_to "About us", "#{root_path}#about-us" %></li>
         <li class="divider"></li>
-        <li><%= link_to "How to use", "/home/how_to_use" %></li>
+        <li><%= link_to "How to use", "#{root_path}#how-to-use" %></li>
         <li class="divider"></li>
-        <li><%= link_to "FAQ", "/home/faq" %></li>
+        <li><%= link_to "FAQ", "#{root_path}#faq" %></li>
         <li class="divider"></li>
-        <li><%= link_to "Contact us", "/home/contact_us" %></li>
+        <li><%= link_to "Contact us", "#{root_path}#contact-us" %></li>
         <li class="divider"></li>
         <li><%= link_to "Login", new_user_session_path %></li>
         <li class="divider"></li>
@@ -52,7 +52,7 @@
     <%= render 'layouts/messages' %>
     <%= yield %>
   </main>
-    
+
   </body>
 </html>
 <%= javascript_include_tag "foundation" %>

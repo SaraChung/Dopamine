@@ -1,4 +1,37 @@
-<h1>Workout partners. Infinite possibilities.</h1>
-<h4>Find a friend to workout with today.</h4>
+<section id="logo">
+  <div class="small-6 small-centered columns">
+    <h1>Workout partners. Infinite possibilities.</h1>
+    <h4>Find a friend to workout with today.</h4>
+    <%= image_tag 'dopamine1.png' %>
+  </div>
+</section>
 
-<img src="/assets/dopamine1.png" />
+<section id="introduction" style="background-color: rgba(255,0,0,0.3); min-height: 400px;">
+  <div class="small-12 small-centered columns">
+    <%= render 'introduction' %>
+  </div>
+</section>
+
+<section id="about-us" style="background-color: rgba(0,0,139,0.3); min-height: 400px;">
+  <div class="small-12 small-centered columns">
+    <%= render 'about_us' %>
+  </div>
+</section>
+
+<section id="how-to-use" style="background-color: rgba(34,139,34,0.4); min-height: 400px;">
+  <div class="small-12 small-centered columns">
+    <%= render 'how_to_use' %>
+  </div>
+</section>
+
+<section id="faq" style="background-color: rgba(255,140,0,0.3); min-height: 400px;">
+  <div class="small-12 small-centered columns">
+    <%= render 'faq' %>
+  </div>
+</section>
+
+<section id="contact-us" style=" min-height: 400px;">
+  <div class="small-12 small-centered columns">
+    <%= render 'contact_us' %>
+  </div>
+</section>
