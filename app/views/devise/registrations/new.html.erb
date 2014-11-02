@@ -2,7 +2,7 @@
   <div class="small-12 columns">
     <h2>Sign Up for some <strong>Dope</strong></h2>
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <fieldset>
+        <div class="panel clearfix">
           <div><%= f.label :first_name, :class => "#{'error' if resource.errors[:first_name].any?}"  %><br/>
             <%= f.text_field :first_name, autofocus: true, :class => "#{'error' if resource.errors[:first_name].any?}" %>
             <% if resource.errors[:first_name].any? %>
@@ -37,7 +37,7 @@
                 <small class="error"><%= resource.errors[:password_confirmation].join(', ') %></small>
             <% end %>
           </div>
-        </fieldset>
+        </div>
           <div><%= f.submit "Sign up", class: 'small round button' %></div>
       <% end %>
     <%= render "devise/shared/links" %>

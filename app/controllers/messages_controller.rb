@@ -29,7 +29,7 @@ class MessagesController < ApplicationController
     @user = User.find(@message.sent_messageable_id)
     @reply_message = current_user.reply_to(@message, params[:body])
     @conversation = @reply_message.conversation
-    firebase = Firebase::Client.new("https://popping-torch-6315.firebaseio.com/#{host}/messages_conversation/new_message_#{@conversation.last.id}")
+    firebase = Firebase::Client.new("https://popping-torch-6315.firebaseio.com/#{@host}/messages_conversation/new_message_#{@conversation.last.id}")
     firebase.push("", :name => current_user.first_name, :text => params[:body], :id => current_user.id)
     respond_to do |format|
       format.html do
@@ -37,7 +37,7 @@ class MessagesController < ApplicationController
         redirect_to conversation_message_path(@reply_message)
       end
       format.js do
-        render :js => ""
+        @messages = @message.conversation
       end
     end
   end
@@ -47,8 +47,14 @@ class MessagesController < ApplicationController
     @message = Message.find(params[:id])
     @conversation = @message.conversation
     @messages = @message.conversation
-    firebase = Firebase::Client.new("https://popping-torch-6315.firebaseio.com/#{host}/messages_conversation/new_message_#{@conversation.last.id}")
+    firebase = Firebase::Client.new("https://popping-torch-6315.firebaseio.com/#{@host}/messages_conversation/new_message_#{@conversation.last.id}")
     firebase.delete("")
+  end
+
+  def fetch_conversation
+    @message = Message.find(params[:id])
+    @messages = @message.conversation
+    render layout: false
   end
 
   def sent_messages

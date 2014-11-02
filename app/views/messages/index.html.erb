@@ -5,25 +5,33 @@
     </div>
   </div>
 </div>
-   
-<%unless @messages.blank?%>
-<div class="small-12 columns">
-  <%@messages.each do |message|%>
-    <%sender = sender(message)%>
-    <b><%= link_to sender.first_name, user_path(sender) %></b> 
-    <br/>
-    <br/>
-    <strong><%= message.topic %></strong><br/><%= message.body %>
-    <br/>
-    <br/>
-      <%= link_to "View Conversation", conversation_message_path(message) %>
-    <hr/>
-    </div>
-</div>
-    <%end%>
-  <%else%>
+
+<% unless @messages.blank? %>
+    <div class="row">
+      <div class="small-12 columns">
+        <table>
+          <thead>
+          <tr>
+            <th>Sender</th>
+            <th width="150">Message</th>
+            <th width="150"></th>
+          </tr>
+          </thead>
+          <tbody>
+          <%- @messages.each do |message| %>
+              <% sender = sender(message) %>
+              <tr>
+                <td><b><%= link_to sender.first_name, user_path(sender) %></b></td>
+                <td><strong><%= message.topic %></strong><br/><%= message.body %></td>
+                <td><%= link_to "View Conversation", conversation_message_path(message) %></td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+<% else %>
     You have no messages!
-  <%end%>
+<% end %>
 </div>
 
 

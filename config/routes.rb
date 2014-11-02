@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     member do
       get :reply_message
       get :conversation
+      get :fetch_conversation
     end
   end
   

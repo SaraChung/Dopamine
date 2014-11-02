@@ -1,48 +1,33 @@
-<div style="padding: 10px">
-  <h3>Conversation between
-    <a href="<%= profile_path(@conversation.last.people.first.profile) %>">
-      <%=@conversation.first.people.first.first_name%>
-    </a>
-    and
-    <a href="<%= profile_path(@conversation.last.people.last.profile) %>">
-      <%=@conversation.first.people.last.first_name%>
-    </a>
-  </h3>
-
-  <%=form_tag reply_messages_path, :method => :get, :remote => true do%>
-    <%= hidden_field_tag :message_id, @messages.last.id %>
-    <div>
-      <%= text_area_tag "body", '', :class => "form-control", :placeholder => "Enter Message here" %>
+<div class="row ">
+  <div style="padding: 10px">
+    <div class="panel callout radius">
+      <h3>Conversation between
+        <a href="<%= profile_path(@conversation.first.sent_messageable) %>">
+          <%= @conversation.first.sent_messageable.first_name %>
+        </a>
+        and
+        <a href="<%= profile_path(@conversation.first.received_messageable) %>">
+          <%= @conversation.first.received_messageable.first_name %>
+        </a>
+      </h3>
+      <%= form_tag reply_messages_path, :method => :get, :remote => true do %>
+          <%= hidden_field_tag :message_id, @messages.last.id %>
+          <div>
+            <%= text_area_tag "body", '', :class => "message form-control", :placeholder => "Enter Message here" %>
+          </div>
+          <%= submit_tag 'Reply', class: "small round button" %>
+      <% end %>
     </div>
-    <div class="small round button" type="submit">Reply</button>
+    <div id="messagesDiv" class="panel clearfix">
+        <%= render 'list' %>
     </div>
-  <%end%>
-
-  <div id="messagesDiv">
-    <%unless @messages.blank?%>
-      <%@messages.each do |message|%><br/>
-        <%sender = sender(message)%>
-        <b><%=sender.first_name %></b>:
-        <%= message.body %>
-      <%end%>
-    <%else%>
-      You have no messages
-    <%end%>
   </div>
-
 </div>
-
 <script type="text/javascript">
-  var fb = new Firebase("https://flickering-torch-1417.firebaseio.com/<%= @host %>/messages_conversation/new_message_<%= @conversation.last.id %>");
-  
-  //SAVE DATA
-<%#*fb.set({ name: "Alex Wolfe" });%>
-  //LISTEN FOR REALTIME CHANGES
-  fb.on("child_added", function(data) {
-    var name = data.val() ? data.val().name : "";
-    var text = data.val() ? data.val().text : "";
-    $('.form-control').val('');
-    $('#messagesDiv').prepend( "<br/>" +"<b>" + name + "</b>" + ": " + text  );
-  
+$(document).ready(
+  function(){
+    setInterval(function(){
+      $('#messagesDiv').load('<%= fetch_conversation_message_path(@message) %>');
+    }, 3000);
   });
 </script>

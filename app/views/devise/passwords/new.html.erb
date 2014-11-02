@@ -2,7 +2,7 @@
   <div class="small-12 columns">
     <h2>Forgot your password?</h2>
     <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: {method: :post}) do |f| %>
-        <fieldset>
+        <div class="panel clearfix">
           <div><%= f.label :email, :class => "#{'error' if resource.errors[:email].any?}" %>
             <br/>
             <%= f.email_field :email, autofocus: true, :class => "#{'error' if resource.errors[:email].any?}" %>
@@ -10,7 +10,7 @@
                 <small class="error"><%= resource.errors[:email].join(', ') %></small>
             <% end %>
           </div>
-        </fieldset>
+        </div>
         <div><%= f.submit "Send me reset password instructions", class: 'small round button' %></div>
     <% end %>
 
