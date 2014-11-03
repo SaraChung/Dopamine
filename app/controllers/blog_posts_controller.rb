@@ -21,7 +21,7 @@ class BlogPostsController < ApplicationController
   private
 
   def post_params
-    params.require(:blog_post).permit(:user_id, :blog_id, :photo, :body)
+    params.require(:blog_post).permit(:user_id, :blog_id, :photo, :body) if params[:params]
   end
   
 end
