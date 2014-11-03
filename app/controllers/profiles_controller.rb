@@ -27,10 +27,30 @@ class ProfilesController < ApplicationController
     @profiles.delete(current_user.profile)
   end
 
+  def remove_interest
+    @profile = current_user.profile
+    if @profile.interests.include?(params[:interest])
+      @profile.interests.delete(params[:interest])
+      @profile.save
+    end
+    flash[:notice] = "Interest Removed"
+    redirect_to edit_profile_path(@profile)
+  end
+
+  def add_interest
+    @profile = current_user.profile
+    unless params[:interest].blank?
+      @profile.interests << params[:interest]
+      @profile.save
+    end
+    flash[:notice] = "New Interest Added"
+    redirect_to edit_profile_path(@profile)
+  end
+
   private
 
   def profile_params
-    params.require(:profile).permit(:user_id, :gender, :latitude, :longitude, :age, :search_distance, :search_age, :profile_picture)
+    params.require(:profile).permit(:user_id, :gender, :latitude, :longitude, :age, :search_distance, :search_age, :profile_picture, :interest)
   end
   
 end

@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   resources :profiles do
     collection do
       get :search_profiles
+      get :new_interest
+      post :add_interest
+      get :remove_interest
     end
   end
 
