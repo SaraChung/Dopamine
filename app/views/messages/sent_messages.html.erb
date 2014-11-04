@@ -4,11 +4,11 @@
   <%unless @messages.blank?%>
     <%@messages.each do |message|%>
 
-	<%sender = sender(message)%>
-	<b><%= link_to sender.first_name, user_path(sender) %></b> <br/>
-	<b><%= message.topic %>:</b>&nbsp;<%= message.body %>
+    	<%sender = sender(message)%>
+    	<b><%= link_to sender.first_name, user_path(sender) %></b> <br/>
+    	<b><%= message.topic %>:</b>&nbsp;<%= message.body %>
 
-	<%= link_to "View Conversation", conversation_message_path(message) %>
+    	<%= link_to "View Conversation", conversation_message_path(message) %>
 
     <%end%>
   <%else%>

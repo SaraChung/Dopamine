@@ -3,9 +3,9 @@
         <br/>
         <% sender = sender(message) %>
         <span class="secondary label">
-                <h5><b><%= sender.first_name %></b>:&nbsp;<%= message.body %></h5>
-              </span>
+	        <h5><b><%= sender.first_name %></b>:&nbsp;<%= message.body %></h5>
+	      </span>
     <% end %>
 <% else %>
-    You have no messages
+    You have no messages.
 <% end %>
