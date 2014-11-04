@@ -1,13 +1,11 @@
-<!-- Header -->
-<div class="row">
+<!-- <div class="row">
   <div class="small-12 columns">
     <h1>Blog<br>
       <small>Gettin my dose of dopamine.</small>
     </h1>
     <hr/>
   </div>
-</div>
-<!-- End Header -->
+</div> -->
 
 <div class="row">
   <div class="small-12 columns">
@@ -22,7 +20,7 @@
               <%= form_for BlogPost.new do |f| %>
                   <%= f.text_area :body, :class => "redactor" %>
                   <hr>
-                  <%= f.submit "Create Blog post", class: 'tiny round button' %>
+                  <%= f.submit "Post", class: 'tiny round button' %>
               <% end %>
             </fieldset>
           </div>
@@ -31,7 +29,7 @@
               <%= form_for BlogPost.new, :html => {:multipart => true} do |f| %>
                   <%= f.file_field :photo %>
                   <hr>
-                  <%= f.submit "Create Blog post", class: 'tiny round button' %>
+                  <%= f.submit "Post", class: 'tiny round button' %>
               <% end %>
             </fieldset>
           </div>

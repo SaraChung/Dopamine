@@ -18,14 +18,14 @@
                   </div>
               <% end %>
               <!-- End Main Content -->
-              <div style="clear: both;"></div>
-              <h5>Comments</h5>
+  <div style="clear: both;"></div>
+  <h5>Comments</h5>
 
-              <div id="comments_div_<%= post.id %>">
-                <%= render :partial => "/comments/comments_partial", :locals => {:object => post} %>
-              </div>
-            </div>
-        <% end %>
+    <div id="comments_div_<%= post.id %>">
+      <%= render :partial => "/comments/comments_partial", :locals => {:object => post} %>
+    </div>
+  </div>
+  <% end %>
 
   <% else %>
       You have no blog posts!

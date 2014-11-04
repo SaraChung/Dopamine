@@ -1,21 +1,22 @@
+<section id="profile" style="background-color: rgba(0,0,128,0.3); min-height: 400px;">
+	<div class="small-3 small-centered columns">
+		<% if @user == current_user %>
+		<% unless @profile.profile_picture.blank? %>
+			<p><%= image_tag @profile.profile_picture.url, :style => "width: 300px" %></p>
+			<h1><%= @profile.user.first_name %> <%= @profile.user.last_name %></h1>
+	</div>
+</section>
+
 <div class="row panel clearfix">
   <div class="small-12 columns">  
-		<h2>Profile</h2>
-		<hr/>
-		<%if @user == current_user%>
-	  	<h3>Hi <%= @profile.user.first_name %> <%= @profile.user.last_name %>, </h3>
-	  <%unless @profile.profile_picture.blank?%>
-	  <p><%= image_tag @profile.profile_picture.url%></p>
-		<%#= link_to "Blog Page", blog_path(@user.blog) %>
-
-	    <p>Name: <%= @profile.user.first_name %> <%= @profile.user.last_name %></p>
-	    <p>Age: <%= @profile.age %></p>
-	    <p>Gender: <%= @profile.gender %></p>
-	    <p>City: <%= @profile.city %></p>
-
-	    <hr/>
-			
-			 <%= link_to "Edit Profile", edit_profile_path(@profile) %>
+	  <p>Name: <%= @profile.user.first_name %> <%= @profile.user.last_name %></p>
+	  <p>Age: <%= @profile.age %></p>
+	  <p>Gender: <%= @profile.gender %></p>
+	  <p>City: <%= @profile.city %></p>
+		
+	  <hr/>
+		
+		 <%= link_to "Edit Profile", edit_profile_path(@profile) %>
 		<%end%>
 		<%end%>
 	</div>

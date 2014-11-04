@@ -1,80 +1,29 @@
-<div class="row">
+<div class="row" data-equalizer>
   <div class="small-12 columns">
-    <div class="panel">
-      <h1>Thoughts Provoked</h1>
-    </div>
+    <h1>Thoughts Provoked</h1>
+      <% unless @messages.blank? %>
+        <div class="small-3 columns" data-equalizer-watch>
+          <% @messages.each do |message| %>
+            <p><%#= image_tag @profile.profile_picture.url, :style => "width: 400px" %></p>
+        </div>
+        <div class="small-6 columns panel" data-equalizer-watch>
+          <% sender = sender(message) %>
+            <strong><%= link_to sender.first_name, user_path(sender) %></strong>
+            <br/>
+            <%= message.topic %>
+        </div>
+        <div class="small-3 columns" data-equalizer-watch>
+        <br/>
+        <br/>
+          <%= link_to "View Conversation", conversation_message_path(message), class: 'medium round button success' %>
+        </div>
+
+      <% end %>
+
+      <% else %>
+        You have no messages!
+      <% end %>
   </div>
 </div>
-
-<% unless @messages.blank? %>
-    <div class="row">
-      <div class="small-12 columns">
-        <table>
-          <thead>
-          <tr>
-            <th>Sender</th>
-            <th width="150">Message</th>
-            <th width="150"></th>
-          </tr>
-          </thead>
-          <tbody>
-          <%- @messages.each do |message| %>
-              <% sender = sender(message) %>
-              <tr>
-                <td><b><%= link_to sender.first_name, user_path(sender) %></b></td>
-                <td><strong><%= message.topic %></strong><br/><%= message.body %></td>
-                <td><%= link_to "View Conversation", conversation_message_path(message) %></td>
-              </tr>
-          <% end %>
-          </tbody>
-        </table>
-      </div>
-<% else %>
-    You have no messages!
-<% end %>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--     <div class="small-10 columns">
-      <p><strong>Some Person said:</strong> Bacon ipsum dolor sit amet nulla ham qui sint exercitation eiusmod commodo, chuck duis velit. Aute in reprehenderit, dolore aliqua non est magna in labore pig pork biltong.</p>
-      <ul class="inline-list">
-        <li><a href="">Reply</a></li>
-      </ul>
-    </div>
-  </div>
- 
-  </div>
-
-<footer class="row">
-  <div class="small-12 columns">
-    <hr/>
-    <div class="row">
-      <div class="small-5 columns">
-        <p>© Copyright no one at all. Go to town.</p>
-      </div>
-    </div>
-  </div>
-</footer> -->
 
 

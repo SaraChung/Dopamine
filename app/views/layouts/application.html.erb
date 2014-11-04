@@ -16,13 +16,16 @@
   <body>
     <header>
       <%= render 'layouts/navigation' %>
+        <div class="small-12 columns">
+          <h2>Dopamine</h2>
+        </div>
     </header>
     <main role="main">
       <%= render 'layouts/messages' %>
       <%= yield %>
     </main>
 
-    <footer class="row">
+<!--     <footer class="row">
       <div class="small-12 columns">
         <hr/>
         <div class="row">
@@ -31,7 +34,7 @@
           </div>
         </div>
       </div>
-    </footer>
+    </footer> -->
 
   </body>
 </html>
