@@ -1,32 +1,81 @@
-<section id="logo">
-  <div class="small-9 small-centered columns">
-    <h1>DOPAMINE</h1>
-    <h3>Workout partners. Infinite possibilities.</h3>
-    <h5>Find a friend to workout with today.</h5>
-    <%= image_tag 'dopamine1.png' %>
+<div id="fsvs-body">
+  <div class="slide" id="logo">
+    <header>
+      <nav class="top-bar" data-topbar>
+        <ul class="title-area">
+          <% if user_signed_in? %>
+              <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+          <% end %>
+        </ul>
+
+        <div class="top-bar-section">
+          <ul class="right">
+            <li class="divider"></li>
+            <li><%= link_to "Introduction", "#{root_path}#introduction" %></li>
+            <li class="divider"></li>
+            <li><%= link_to "About us", "#{root_path}#about-us" %></li>
+            <li class="divider"></li>
+            <li><%= link_to "How to use", "#{root_path}#how-to-use" %></li>
+            <li class="divider"></li>
+            <li><%= link_to "FAQ", "#{root_path}#faq" %></li>
+            <li class="divider"></li>
+            <li><%= link_to "Contact us", "#{root_path}#contact-us" %></li>
+            <li class="divider"></li>
+            <li><%= link_to "Login", new_user_session_path %></li>
+            <li class="divider"></li>
+            <li><%= link_to "Sign Up", new_user_registration_path %></li>
+            <li class="divider"></li>
+            <%- if user_signed_in? %>
+                <li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
+            <% end %>
+
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <div class="small-6 small-centered columns">
+      <h1>Workout partners. Infinite possibilities.</h1>
+      <h4>Find a friend to workout with today.</h4>
+      <%= image_tag 'dopamine1.png' %>
+    </div>
+  </div>
+
+<section id="introduction" style="background-color: rgba(255,0,0,0.3); min-height: 400px;">
+  <div class="small-12 small-centered columns">
+    <%= render 'introduction' %>
   </div>
 </section>
 
-<section id="about-us" style="background-color: rgba(199,237,232,0.3); height: 400px;">
-  <div class="small-12 small-centered columns">
-    <%= render 'about_us' %>
+  <div class="slide" id="about-us" style="background-color: rgba(0,0,139,0.3); min-height: 400px;">
+    <div class="small-12 small-centered columns">
+      <%= render 'about_us' %>
+    </div>
   </div>
-</section>
 
-<section id="how-to-use" style="background-color: rgba(160,222,214,0.4); min-height: 400px;">
-  <div class="small-12 small-centered columns">
-    <%= render 'how_to_use' %>
+  <div class="slide" id="how-to-use" style="background-color: rgba(34,139,34,0.4); min-height: 400px;">
+    <div class="small-12 small-centered columns">
+      <%= render 'how_to_use' %>
+    </div>
   </div>
-</section>
 
-<section id="faq" style="background-color: rgba(69,181,196,0.3); min-height: 400px;">
-  <div class="small-12 small-centered columns">
-    <%= render 'faq' %>
+  <div class="slide" id="faq" style="background-color: rgba(255,140,0,0.3); min-height: 400px;">
+    <div class="small-12 small-centered columns">
+      <%= render 'faq' %>
+    </div>
   </div>
-</section>
 
-<section id="contact-us" style="background-color: rgba(22,147,165,0.3); min-height: 400px;">
-  <div class="small-12 small-centered columns">
-    <%= render 'contact_us' %>
+  <div class="slide" id="contact-us" style=" min-height: 400px;">
+    <div class="small-12 small-centered columns">
+      <%= render 'contact_us' %>
+    </div>
   </div>
-</section>
+</div>
+
+<script>
+  $(document).ready( function() {
+    var slider = $.fn.fsvs({
+        speed : 1000,
+    });
+  });
+
+</script>

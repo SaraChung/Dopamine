@@ -1,58 +1,60 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE>
+<html class="<%= 'fsvs' if controller_name.eql?("home") %>">
 
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-    <title><%= content_for?(:title) ? yield(:title) : "Dopamine" %></title>
+  <title><%= content_for?(:title) ? yield(:title) : "Dopamine" %></title>
 
-    <%= stylesheet_link_tag    "application" %>
-    <%= javascript_include_tag "vendor/modernizr" %>
-    <%= csrf_meta_tags %>
-    <%= javascript_include_tag "application" %>
-  </head>
+  <%= stylesheet_link_tag "application" %>
+  <%= javascript_include_tag "vendor/modernizr" %>
+  <%= csrf_meta_tags %>
+  <%= javascript_include_tag "application" %>
+</head>
 
-  <body>
-  <header>
-  <nav class="top-bar" data-topbar>
-    <ul class="title-area">
-      <% if user_signed_in? %>
-        <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
-      <% end %>
-    </ul>
+<body>
+<%- unless controller_name.eql?("home") %>
 
-    <div class="top-bar-section">
-      <ul class="right">
-        <li class="divider"></li>
-        <li><%= link_to "Introduction", "#{root_path}#introduction" %></li>
-        <li class="divider"></li>
-        <li><%= link_to "About us", "#{root_path}#about-us" %></li>
-        <li class="divider"></li>
-        <li><%= link_to "How to use", "#{root_path}#how-to-use" %></li>
-        <li class="divider"></li>
-        <li><%= link_to "FAQ", "#{root_path}#faq" %></li>
-        <li class="divider"></li>
-        <li><%= link_to "Contact us", "#{root_path}#contact-us" %></li>
-        <li class="divider"></li>
-        <li><%= link_to "Login", new_user_session_path %></li>
-        <li class="divider"></li>
-        <li><%= link_to "Sign Up", new_user_registration_path %></li>
-        <li class="divider"></li>
-        <%- if user_signed_in? %>
-            <li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
-        <% end %>
+    <header>
+      <nav class="top-bar" data-topbar>
+        <ul class="title-area">
+          <% if user_signed_in? %>
+              <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+          <% end %>
+        </ul>
 
-      </ul>
-    </div>
-  </nav>
-  </header>
+        <div class="top-bar-section">
+          <ul class="right">
+            <li class="divider"></li>
+            <li><%= link_to "Introduction", "#{root_path}#introduction" %></li>
+            <li class="divider"></li>
+            <li><%= link_to "About us", "#{root_path}#about-us" %></li>
+            <li class="divider"></li>
+            <li><%= link_to "How to use", "#{root_path}#how-to-use" %></li>
+            <li class="divider"></li>
+            <li><%= link_to "FAQ", "#{root_path}#faq" %></li>
+            <li class="divider"></li>
+            <li><%= link_to "Contact us", "#{root_path}#contact-us" %></li>
+            <li class="divider"></li>
+            <li><%= link_to "Login", new_user_session_path %></li>
+            <li class="divider"></li>
+            <li><%= link_to "Sign Up", new_user_registration_path %></li>
+            <li class="divider"></li>
+            <%- if user_signed_in? %>
+                <li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
+            <% end %>
 
-  <main role="main">
-    <%= render 'layouts/messages' %>
-    <%= yield %>
-  </main>
+          </ul>
+        </div>
+      </nav>
+    </header>
+<%- end %>
+<main role="main">
+  <%= render 'layouts/messages' %>
+  <%= yield %>
+</main>
 
-  </body>
+</body>
 </html>
 <%= javascript_include_tag "foundation" %>
