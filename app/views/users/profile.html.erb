@@ -12,6 +12,7 @@
     <p>Name: <%= profile.user.first_name %> <%= profile.user.last_name %></p>
     <p>Gender: <%= profile.gender %></p>
     <p>City: <%= profile.city %></p>
+    <p>Workout interests: <%= @profile.interests %></p>
     
     <%= link_to "Match", add_match_users_path(:match_id => profile.user.id) %>
     <hr/>

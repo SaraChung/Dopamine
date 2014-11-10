@@ -4,9 +4,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :trackable, :validatable, :omniauthable
   
-  has_one :profile
-  has_one :blog
-  has_many :blog_posts
+  has_one :profile, :dependent => :destroy
+  has_one :blog, :dependent => :destroy
+  has_many :blog_posts, :dependent => :destroy
 
   validates :first_name, :last_name, presence: true
   acts_as_followable

@@ -1,37 +1,32 @@
-<div class="row" data-equalizer>
+<div class="row panel clearfix">
   <div class="small-12 columns">
-    <h1>List of profiles</h1>
-      <% unless @profiles.blank? %>
-        <div class="small-3 columns" data-equalizer-watch>
-          <% @profiles.each do |profile| %>
-            <p><%= image_tag @profile.profile_picture.url, :style => "width: 400px" %></p>
-        </div>
-      <div class="small-6 columns panel" data-equalizer-watch>
-        <h3><strong>Name: <%= profile.user.first_name %> <%= profile.user.last_name %></strong></h3>
-        <br/>
-        <p>Gender: <%= profile.gender %></p>
-        <p>Age: <%= profile.age %></p>
-        <p>City: <%= profile.city %></p>
-      </div>
-        <div class="small-3 columns" data-equalizer-watch>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-          <%= link_to "Match", add_match_users_path(:match_id => profile.user.id), class: 'medium round button success' %>
-        </div>
+    <h1>Search Results</h1>
 
-      <% end %>
+    <% unless @profiles.blank? %>
+        <% @profiles.each do |profile| %>
+            <hr/>
+            <p><%= image_tag @profile.profile_picture.url %></p>
 
-      <% else %>
+            <p>Name: <%= profile.user.first_name %> <%= profile.user.last_name %></p>
+
+            <p>Gender: <%= profile.gender %></p>
+
+            <p>City: <%= profile.city %></p>
+
+            <p>Workout interests: <%= @profile.interests %></p>
+            
+            <%= link_to "Match", add_match_users_path(:match_id => profile.user.id), class: 'small round button' %>
+        <% end %>
+
+    <% else %>
         There are no profiles matching your requirements!
-      <% end %>
+    <% end %>
+
+    <footer class="row">
+      <div class="small-12 columns">
+        <hr/>
+        <p><b>Note: </b>You can filter search results according to location and age when you edit your profile.</p>
+      </div>
+    </footer>
   </div>
 </div>
-
-<footer class="row">
-  <div class="small-12 columns">
-    <hr/>
-    <p><strong>Note: </strong>These search results are filtered according to location and age parameters set in your profile.</p>
-  </div>
-</footer>
