@@ -35,6 +35,7 @@ Rails.application.routes.draw do
     collection do
       get :matches
       get :add_match
+      get :user_settings
     end
   end
 
