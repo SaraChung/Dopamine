@@ -1,4 +1,4 @@
-<% object.root_comments.last(5).each do |comment| %>
+<% object.root_comments.order('created_at asc').each do |comment| %>
     <div class="panel callout radius">
       <div class="row">
         <div class="small-1 columns">
@@ -22,13 +22,6 @@
     </div>
 
 <% end %>
-
-<%- if object.root_comments.count > 5 %>
-    <br>
-    <%= link_to "Show all", blog_post_path(object) %>
-    <br>
-    <br>
-<%- end %>
 
 <%= form_for Comment.new, :remote => true do |f| %>
     <%= hidden_field_tag "object_id", object.id %>

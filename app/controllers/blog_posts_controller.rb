@@ -18,10 +18,14 @@ class BlogPostsController < ApplicationController
     redirect_to blog_path(current_user.blog)
   end
 
+  def show
+    @blog_post = BlogPost.find(params[:id])
+  end
+
   private
 
   def post_params
-    params.require(:blog_post).permit(:user_id, :blog_id, :photo, :body) if params[:params]
+    params.require(:blog_post).permit(:user_id, :blog_id, :photo, :body)
   end
   
 end
