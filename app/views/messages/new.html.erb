@@ -3,7 +3,7 @@
 
     <h3>New Message to
       <b><%= @user.first_name %></b></h3>
-    <%= image_tag @user.profile.profile_picture.url %>
+    <%= image_tag @user.profile.profile_picture.url, alt:  'No Image' %>
     <br/>
     <%= form_tag send_message_messages_path do %>
         <%= hidden_field_tag :user_id, @user.id %>
