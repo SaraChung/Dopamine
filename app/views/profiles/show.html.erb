@@ -1,23 +1,35 @@
 <div class="row panel clearfix">
-  <div class="small-12 columns">  
+  <div class="small-12 columns">
 		<h2>Profile</h2>
-		<hr/>
+        <h3>Hi <%= @profile.user.first_name %> <%= @profile.user.last_name %>, </h3>
+    <div style="background-color: dodgerblue">
 		<%if @user == current_user%>
-	  	<h3>Hi <%= @profile.user.first_name %> <%= @profile.user.last_name %>, </h3>
-	  <%unless @profile.profile_picture.blank?%>
-	  <p><%= image_tag @profile.profile_picture.url%></p>
-		<%#= link_to "Blog Page", blog_path(@user.blog) %>
 
+        <center>  <p style="padding-top: 3%"><%= image_tag @profile.profile_picture.url%></p></center>
+		<%#= link_to "Blog Page", blog_path(@user.blog) %>
+        <div style=" float: left; margin-left: 39%"><h3> <%= @profile.user.first_name %></h3></div>
+        <div style=" float: right; margin-right: 40%"><h3> <%= @profile.user.last_name %> </h3></div>
+        <div style="clear: left"></div>
+        <hr/>
+    </div>
+<fieldset class="arrow_box" style="border-radius: 5px;">
 	    <p>Name: <%= @profile.user.first_name %> <%= @profile.user.last_name %></p>
 	    <p>Age: <%= @profile.age %></p>
 	    <p>Gender: <%= @profile.gender %></p>
 	    <p>City: <%= @profile.city %></p>
 	    <p>Workout interests: <%= @profile.interests %></p>
+</fieldset>
 
-	    <hr/>
 			
-			 <%= link_to "Edit Profile", edit_profile_path(@profile) %>
-		<%end%>
+			 <%= link_to "Edit Profile", edit_profile_path(@profile), :class => "small round button" %>
 		<%end%>
 	</div>
 </div>
+
+<style>
+    .arrow_box { position: relative; background: #ffffff; border: 1px solid #3676f5; }
+    .arrow_box:after, .arrow_box:before { bottom: 100%; left: 10%; border: solid transparent; content: " "; height: 0; width: 0; position: absolute; pointer-events: none; }
+    .arrow_box:after { border-color: rgba(255, 255, 255, 0); border-bottom-color: #ffffff; border-width: 20px; margin-left: -20px; }
+    .arrow_box:before { border-color: rgba(54, 118, 245, 0); border-bottom-color: #3676f5; border-width: 21px; margin-left: -21px; }
+
+</style>

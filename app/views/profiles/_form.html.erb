@@ -1,13 +1,16 @@
-<section id="profile" style="background-color: rgba(0,0,128,0.3); min-height: 400px;">
-  <div class="small-3 small-centered columns">
-    <p><%= image_tag @profile.profile_picture.url, :style => "width: 300px" %></p>
-    <h1><%= @profile.user.first_name %> <%= @profile.user.last_name %></h1>
-  </div>
-</section>
 
 <div class="row panel clearfix">
-  <div class="small-12 columns">   
+  <section id="profile" style="background-color: dodgerblue; min-height: 400px; margin-right: 1.5%; margin-left: 1.5%;">
+    <div class="small-3 small-centered columns">
+      <p style="padding-top: 20%"><%= image_tag @profile.profile_picture.url, :style => "width: 300px" %></p>
+    </div>
+    <div style=" float: left; margin-left: 34%"><h2> <%= @profile.user.first_name %></h2></div>
+    <div style=" float: right; margin-right: 36%"><h2> <%= @profile.user.last_name %> </h2></div>
+    <div style="clear: left"></div>
 
+  </section>
+  <div class="small-12 columns">
+    <fieldset class="arrow_box" style="border-radius: 5px;">
   <%= form_for @profile, :html => {:multipart => true} do |f| %>
     
     <div class="">
@@ -62,10 +65,11 @@
 
     <div class="row">
       <div class="large-12 columns">
-        <%= f.submit "Update Profile", class: "small round button" %>
+        <%= f.submit "Update Profile", class: "small round button"%>
       </div>
     </div>
     <%end%>
+    </fieldset>
   </div>
 </div>
 
@@ -79,3 +83,11 @@
     $("#search_age").html(newValue);
   });
 </script>
+
+<style>
+    .arrow_box { position: relative; background: #ffffff; border: 1px solid #3676f5; }
+    .arrow_box:after, .arrow_box:before { bottom: 100%; left: 10%; border: solid transparent; content: " "; height: 0; width: 0; position: absolute; pointer-events: none; }
+    .arrow_box:after { border-color: rgba(255, 255, 255, 0); border-bottom-color: #ffffff; border-width: 20px; margin-left: -20px; }
+    .arrow_box:before { border-color: rgba(54, 118, 245, 0); border-bottom-color: #3676f5; border-width: 21px; margin-left: -21px; }
+
+</style>

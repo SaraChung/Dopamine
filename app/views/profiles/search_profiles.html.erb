@@ -5,17 +5,23 @@
     <% unless @profiles.blank? %>
         <% @profiles.each do |profile| %>
             <hr/>
-            <p><%= image_tag @profile.profile_picture.url %></p>
+            <div style="float: left; width: 20%; padding-top: 5%; padding-bottom: 5%;">
+                <p><%= image_tag @profile.profile_picture.url %></p>
+            </div>
+            <div style="float: left; width: 60%;">
+              <fieldset class="arrow_box" style="border-radius: 5px;">
+                <p><%= link_to "Name: ", profile_path(profile) %> <%= profile.user.first_name %> <%= profile.user.last_name %></p>
 
-            <p>Name: <%= profile.user.first_name %> <%= profile.user.last_name %></p>
+                <p>Gender: <%= profile.gender %></p>
 
-            <p>Gender: <%= profile.gender %></p>
+                <p>City: <%= profile.city %></p>
 
-            <p>City: <%= profile.city %></p>
-
-            <p>Workout interests: <%= @profile.interests %></p>
-            
-            <%= link_to "Match", add_match_users_path(:match_id => profile.user.id), class: 'small round button' %>
+                <p>Workout interests: <%= @profile.interests %></p>
+              </fieldset>
+            </div>
+            <div style="float: left; width: 20%; padding-top: 10%; padding-left: 5%;">
+                <%= link_to "Match", add_match_users_path(:match_id => profile.user.id), class: 'small round button' %>
+            </div>
         <% end %>
 
     <% else %>
@@ -30,3 +36,15 @@
     </footer>
   </div>
 </div>
+
+<style>
+    .arrow_box { position: relative; background: #ffffff; border: 1px solid #3676f5; }
+    .arrow_box:after, .arrow_box:before { right: 100%; top: 50%; border: solid transparent; content: " "; height: 0; width: 0; position: absolute; pointer-events: none; }
+    .arrow_box:after { border-color: rgba(255, 255, 255, 0); border-right-color: #ffffff; border-width: 20px; margin-top: -20px; }
+    .arrow_box:before { border-color: rgba(54, 118, 245, 0); border-right-color: #3676f5; border-width: 21px; margin-top: -21px; }
+    img {
+        height: 80%;
+        width: 80%;
+    }
+
+</style>

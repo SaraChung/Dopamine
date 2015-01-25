@@ -6,36 +6,36 @@
     <hr/>
   </div>
 </div> -->
-
 <div class="row">
   <div class="small-12 columns">
     <% if current_user.eql?(@blog.user) %>
-        <dl class="tabs" data-tab>
-          <dd class="active"><a href="#text">Text</a></dd>
-          <dd><a href="#photo">Photo</a></dd>
+        <dl class="tabs" id="show-tab" data-tab>
+          <dd id="show-text-tab" class="active"><a href="#text" style=" border-radius:3px;box-shadow: 1px 1px 1px 1px #888"><%= image_tag 'text.png',:size => "32"%><br/>Text</a></dd>
+          <dd id="show-photo-tab" class="active"><a href="#photo"style="border-radius:3px;margin-left:0.5%;box-shadow: 1px 1px 1px 1px #888"><%= image_tag 'photo.png',:size => "32"%><br/>Photo</a></dd>
         </dl>
         <div class="tabs-content">
-          <div class="content active" id="text">
+          <div class="content" id="text" style="display: none;">
             <fieldset>
               <%= form_for BlogPost.new do |f| %>
                   <%= f.text_area :body, :class => "redactor" %>
                   <hr>
                   <%= f.submit "Post", class: 'tiny round button' %>
+                  <%= f.submit "Cancel", class: 'tiny round button',:value =>"Cancel",:name =>"Cancel",:onclick=>"close();" %>
               <% end %>
             </fieldset>
           </div>
-          <div class="content" id="photo">
+          <div class="content" id="photo" style="display: none;">
             <fieldset>
-              <%= form_for BlogPost.new, :html => {:multipart => true} do |f| %>
+              <%= form_for BlogPost.new, :html => {:multipart => true} do |f|%>
                   <%= f.file_field :photo %>
                   <hr>
-                  <%= f.submit "Post", class: 'tiny round button' %>
+                  <%= f.submit "Post", class: 'tiny round button'%>
+                  <%= f.submit "Cancel", class: 'tiny round button',:value =>"Cancel",:name =>"Cancel",:onclick=>"close();" %>
               <% end %>
             </fieldset>
           </div>
         </div>
     <% end %>
-
-  <%= render 'posts' %>
+    <%= render 'posts' %>
   </div>
 </div>

@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   def matches
     @matches = current_user.followees(User)
     @profiles = Profile.where('user_id IN (?)', @matches.map(&:id)).includes(:user)
+    #@profiles = Profile.all
   end
 
   def add_match

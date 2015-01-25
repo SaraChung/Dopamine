@@ -1,8 +1,17 @@
 <div class="row">
   <div class="panel callout radius">
-    <h3><a href="<%= profile_path(@conversation.first.received_messageable) %>">
-      <%= @conversation.first.received_messageable.first_name %>
-    </a></h3>
+    <div style="float: left;">
+        <% test = Profile.find(@conversation.first.received_messageable.id) %>
+        <p><%= image_tag test.profile_picture.url %></p>
+    </div>
+    <div style="float: left;">
+        <h3 style="padding-left: 20%; padding-right: 15%">
+          <%= @conversation.first.received_messageable.first_name %>
+        </h3>
+        <br/>
+        <p style="padding-left: 5%; text-decoration-color: black;"><%= link_to "Messages ", messages_url()%>&nbsp; &nbsp; &nbsp;<%= link_to "Profile", profile_path(@conversation.first.received_messageable) %></p>
+    </div>
+    <div style="clear: left;"></div>
 
       <div id="messagesDiv" class="panel clearfix">
         <%= render 'list' %>

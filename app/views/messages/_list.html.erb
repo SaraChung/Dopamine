@@ -2,10 +2,112 @@
     <% @messages.each do |message| %>
         <br/>
         <% sender = sender(message) %>
-        <span class="secondary label">
-	        <h5><b><%= sender.first_name %></b>:&nbsp;<%= message.body %></h5>
-	      </span>
+        <%if sender.email == current_user.email %>
+        <fieldset class="arrow_box1" style="width: 50%; float: right; border-radius: 15px;">
+
+	        <!--<h5><b><%#= sender.first_name %></b>:&nbsp;<%#= message.body %></h5>-->
+          <h5><%= message.body %></h5>
+
+          </fieldset>
+            <p style="clear: right;"></p>
+        <% else %>
+        <fieldset class="arrow_box" style="width: 50%; float: left; border-radius:  15px;">
+
+	        <!--<h5><b><%#= sender.first_name %></b>:&nbsp;<%#= message.body %></h5>-->
+          <h5><%= message.body %></h5>
+
+            </fieldset>
+            <p style="clear: left;"></p>
+        <% end %>
     <% end %>
 <% else %>
     You have no messages.
 <% end %>
+
+
+<%# unless @messages.blank? %>
+    <%# @messages.each do |message| %>
+        <!--<br/>-->
+        <!--<%# sender = sender(message) %>-->
+        <!--<%#if sender.email == current_user.email %>-->
+            <!--<fieldset style="width: 50%; float: right;">-->
+        <!--<span class="secondary label">-->
+	        <!--&lt;!&ndash;<h5><b><%#= sender.first_name %></b>:&nbsp;<%#= message.body %></h5>&ndash;&gt;-->
+          <!--<h5><%#= message.body %></h5>-->
+	      <!--</span>-->
+            <!--</fieldset>-->
+            <!--<p style="clear: right;"></p>-->
+        <!--<%# else %>-->
+            <!--<fieldset style="width: 50%; float: left;">-->
+        <!--<span class="secondary label">-->
+	        <!--&lt;!&ndash;<h5><b><%#= sender.first_name %></b>:&nbsp;<%#= message.body %></h5>&ndash;&gt;-->
+          <!--<h5><%#= message.body %></h5>-->
+	      <!--</span>-->
+            <!--</fieldset>-->
+            <!--<p style="clear: left;"></p>-->
+        <%# end %>
+    <%# end %>
+<%# else %>
+   <!--You have no messages.-->
+<%# end %>
+
+<style>
+    .arrow_box {
+        position: relative;
+        background: #d5afd4;
+        border: 4px solid #c2e1f5;
+    }
+    .arrow_box:after, .arrow_box:before {
+        right: 100%;
+        top: 50%;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+    }
+
+    .arrow_box:after {
+        border-color: rgba(213, 175, 212, 0);
+        border-right-color: #d5afd4;
+        border-width: 15px;
+        margin-top: -15px;
+    }
+    .arrow_box:before {
+        border-color: rgba(194, 225, 245, 0);
+        border-right-color: #c2e1f5;
+        border-width: 21px;
+        margin-top: -21px;
+    }
+</style>
+<style>
+    .arrow_box1 {
+        position: relative;
+        background: #aab0d5;
+        border: 4px solid #c2e1f5;
+    }
+    .arrow_box1:after, .arrow_box1:before {
+        left: 100%;
+        top: 50%;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+    }
+
+    .arrow_box1:after {
+        border-color: rgba(170, 176, 213, 0);
+        border-left-color: #aab0d5;
+        border-width: 15px;
+        margin-top: -15px;
+    }
+    .arrow_box1:before {
+        border-color: rgba(194, 225, 245, 0);
+        border-left-color: #c2e1f5;
+        border-width: 21px;
+        margin-top: -21px;
+    }
+</style>

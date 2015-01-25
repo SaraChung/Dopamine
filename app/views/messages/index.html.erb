@@ -2,23 +2,29 @@
   <div class="small-12 columns">
     <h1>Thoughts Provoked</h1>
       <% unless @messages.blank? %>
-        <div class="small-3 columns" data-equalizer-watch>
           <% @messages.each do |message| %>
             <p><%#= image_tag @profile.profile_picture.url, :style => "width: 400px" %></p>
-        </div>
-        <div class="small-6 columns panel" data-equalizer-watch>
+
+        <div class="small-12 columns panel" data-equalizer-watch>
           <% sender = sender(message) %>
-            <strong><%= link_to sender.first_name, user_path(sender) %></strong>
+            <% test = Profile.find(sender.id) %>
+          <div style="float: left;">
+            <p><%= image_tag test.profile_picture.url %></p>
+          </div>
+          <div style="float: left; padding-left: 2%;">
+            <strong><%= link_to sender.first_name, profile_path(sender) %></strong>
             <br/>
             <%= message.topic %>
-        </div>
-        <div class="small-3 columns" data-equalizer-watch>
-        <br/>
-        <br/>
-          <%= link_to "View Conversation", conversation_message_path(message), class: 'medium round button success' %>
-        </div>
+          </div>
+          <div class="small-3 columns" data-equalizer-watch>
+            <br/>
+            <%= link_to "View Conversation", conversation_message_path(message), class: 'medium round button success' %>
+          </div>
 
+        </div>
+            <div style="clear: left;"></div>
       <% end %>
+
 
       <% else %>
         You have no messages!

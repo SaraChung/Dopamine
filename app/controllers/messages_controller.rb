@@ -5,6 +5,7 @@ class MessagesController < ApplicationController
     @received_messages = current_user.received_messages.conversations
     @sent_messages = current_user.sent_messages.conversations
     @messages = @received_messages | @sent_messages
+
   end
 
   def new

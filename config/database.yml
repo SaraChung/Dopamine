@@ -74,8 +74,10 @@ development:
   encoding: utf8
   database: dopamine_development
   pool: 5
-  username: rrrrrah
-  password: 123
+  port: 5432
+  host: localhost
+  username: postgres
+  password: 007rajob
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -93,5 +95,7 @@ production:
   encoding: utf8
   database: dopamine_development
   pool: 5
-  username: rrrrrah
-  password: 123
+  port: 5432
+  host: localhost
+  username: postgres
+  password: 007rajob

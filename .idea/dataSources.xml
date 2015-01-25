@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="3191289703">
+    <data-source source="LOCAL" name="Rails Dopamine-master: test" uuid="6b1a9e21-60d7-4b5c-a703-ebf1f190850c">
+      <driver-ref>postgresql</driver-ref>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql:dopamine_test</jdbc-url>
+      <user-name>rrrrrah</user-name>
+      <user-password>df9bdf98df99</user-password>
+      <libraries />
+    </data-source>
+    <data-source source="LOCAL" name="Rails Dopamine-master: production" uuid="e6c1a66a-c81c-4b4f-a03a-37e852f88fd8">
+      <driver-ref>postgresql</driver-ref>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/dopamine_development</jdbc-url>
+      <user-name>postgres</user-name>
+      <user-password>df9adf9adf9ddfd8dfcbdfc0dfc5dfc8</user-password>
+      <libraries />
+    </data-source>
+    <data-source source="LOCAL" name="Rails Dopamine-master: development" uuid="32ad01b9-3e3f-4662-99c2-43c6268555c7">
+      <driver-ref>postgresql</driver-ref>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/dopamine_development</jdbc-url>
+      <user-name>postgres</user-name>
+      <user-password>df9adf9adf9ddfd8dfcbdfc0dfc5dfc8</user-password>
+      <libraries />
+    </data-source>
+  </component>
+</project>
+
